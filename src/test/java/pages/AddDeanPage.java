@@ -36,42 +36,14 @@ public class AddDeanPage {
     private By deanSavedPopUp = By.xpath("//*[.='Dean Saved']");
 
 
+    public void enterUsername(String username) {
+        Driver.getDriver().findElement(this.usernameBox).sendKeys(username);
+    }
 
-    private By deanPassword = By.cssSelector("#password");
     public void enterDeanPassword(String password) {
-        Driver.getDriver().findElement(deanPassword).sendKeys(password);
-    }
-
-//    OR
-//    @FindBy(css="#password") public
-//    WebElement deanPasswordElement;
-//    public void enterDeanPassword(String password) {
-//        deanPasswordElement.sendKeys(password);
-//    }
-
-//Driver.getDriver().findElement(deanPassword) ======= @FindBy(css="#password") public WebElement deanPasswordElement;
-
-
-
-    // Reusable methods
-    private By username = By.cssSelector("#username");
-    public void setUsername(String username) {
-        Driver.getDriver().findElement(usernameBox).sendKeys(username);
-    }
-
-//    OR
-//    @FindBy(css = "#username" )
-//    public WebElement userNameBox;
-//    public void setUsername(String username) {
-//        userNameBox.sendKeys(username);
-//    }
-
-
-
-
-    public void setPassword(String password) {
         Driver.getDriver().findElement(passwordBox).sendKeys(password);
     }
+
 
     public void clickOnLoginButton() {
         Driver.getDriver().findElement(loginButton).click();
@@ -117,9 +89,7 @@ public class AddDeanPage {
         Driver.getDriver().findElement(this.ssn).sendKeys(ssn);
     }
 
-    public void enterUsername(String username) {
-        Driver.getDriver().findElement(this.username).sendKeys(username);
-    }
+
 
 
 
