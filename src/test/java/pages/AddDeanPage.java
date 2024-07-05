@@ -1,17 +1,16 @@
 package pages;
 
-import org.junit.Assert;
+import com.github.javafaker.Faker;;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
 import static org.junit.Assert.assertTrue;
+import static utilities.WaitUtils.waitFor;
 
 public class AddDeanPage {
-
+    Faker faker = new Faker();
     // Constructor to initialize the WebDriver
     public AddDeanPage() {
         PageFactory.initElements(Driver.getDriver(),this);
@@ -43,7 +42,6 @@ public class AddDeanPage {
     public void enterDeanPassword(String password) {
         Driver.getDriver().findElement(passwordBox).sendKeys(password);
     }
-
 
     public void clickOnLoginButton() {
         Driver.getDriver().findElement(loginButton).click();
@@ -106,5 +104,63 @@ public class AddDeanPage {
         assertTrue(popUp.isDisplayed());
         assertTrue(popUp.getText().equals(message));
     }
+
+
+//    REUSABLE METHOD FOR ADD DEAN PAGE
+//DEAN MANAGEMENT SAYFASINA GIDER
+    public void navigateToDeanManagement(){
+        waitFor(1);
+//        menuye tikla
+        clickOnMenu();
+        waitFor(1);
+//        dean managementa tikla
+        clickOnDeanManagement();
+        waitFor(1);
+    }
+
+    public void enterDeanInfo(
+            String name,
+            String surname,
+            String birth_place,
+            String gender,
+            String date_of_birth,
+            String phone,
+            String ssn,
+            String username,
+            String password
+    ){
+
+//        DEAN BILGILERINI GIRER
+        waitFor(1);
+//        tum alanlari gir
+        enterDeanName(name);
+        waitFor(1);
+        enterDeanSurName(surname);
+        waitFor(1);
+        enterBirthPlace(birth_place);
+        waitFor(1);
+        enterDeanGender(gender);
+        waitFor(1);
+        enterBirthDay(date_of_birth);
+        waitFor(1);
+
+//        phone, ssn, username degerlerini dinamik yapalim
+//        839-683-7310
+        String ilk3= String.valueOf(faker.number().numberBetween(100,1000));
+        String ikinci3=String.valueOf(faker.number().numberBetween(100,1000));
+        String son4=String.valueOf(faker.number().numberBetween(1000,10000));
+        enterPhone(ilk3+"-"+ikinci3+"-"+son4);
+        waitFor(1);
+        enterSSN(faker.idNumber().ssnValid());
+        waitFor(1);
+        enterUsername(faker.name().username()+String.valueOf(faker.number().numberBetween(1,10)));
+        waitFor(1);
+        enterDeanPassword(password);
+        waitFor(1);
+        clickOnDeanSubmit();
+        waitFor(1);
+    }
+
+
 }
 

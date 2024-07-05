@@ -22,5 +22,6 @@ public class CommonPage {
         Driver.getDriver().findElement(this.password).sendKeys(password);
         Driver.getDriver().findElement(loginButton).click();
     }
-
+//    Test Classlarda bu sekilde cagiracaz
+//    commonPage.login("AdminAhmet","AhmetBayram1+");
 }
