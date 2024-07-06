@@ -22,3 +22,6 @@ Feature: US142013_Yeni_Dekan_Olusturma
       | john  | lenon   | LA          | male   | 10-10-2000    | 839-683-7310 | 111-22-4233 | ay73n771  | Kadfasdf!g2 |
       | sam   | walton  | NYC         | male   | 10-10-2000    | 839-683-7366 | 111-22-4326 | ay73nyy1  | Uadfasdf!g2 |
       | simon | bales   | Dallas      | male   | 10-10-2000    | 839-683-7322 | 111-22-4362 | bs73n6l!1 | Ysffasdf!g2 |
+
+
+#    EXCEL UI DATALARI ILE DEAN OLUSTURMA
