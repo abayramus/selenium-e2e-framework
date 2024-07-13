@@ -1,6 +1,7 @@
 package stepdefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import pojos.dean_controller.DeanPostPojo;
 import pojos.dean_controller.DeanPostResponsePojo;
@@ -141,5 +142,38 @@ public class DeanAPIStepDefinitions {
         // Assert that user matching expected criteria is found
         assertEquals("Dean creation verification failed!", true, userFound);
     }
+
+
+    @Given("Dean icin payload duzenlenir name {string}, surname {string}, birth_place {string}, gender {string}, date_of_birth {string}, phone {string}, ssn {string}, username {string}, password {string}")
+    public void dean_icin_payload_duzenlenir_name_surname_birth_place_gender_date_of_birth_phone_ssn_username_password(String name, String surname, String birth_place, String gender, String date_of_birth, String phone, String ssn, String username, String password) {
+      payload = new DeanPostPojo(date_of_birth,birth_place,gender,name,password,phone,ssn,surname,username);
+      System.out.println("Payload --- "+payload);
+//    DeanPostPojo(String birthDay, String birthPlace, String gender, String name, String password, String phoneNumber, String ssn, String surname, String username)
+    }
+
+
+    @Then("Dean Save icin Response Body dogrulanir")
+    public void dean_save_icin_response_body_dogrulanir() {
+//        gonderilen data ile apidan gelen datalarin esitligi dogrulanir
+        assertEquals(payload.getBirthDay(), actualData.getObject().getBirthDay());
+        assertEquals(payload.getBirthPlace(), actualData.getObject().getBirthPlace());
+        assertEquals(payload.getGender(), actualData.getObject().getGender());
+        assertEquals(payload.getName(), actualData.getObject().getName());
+        assertEquals(payload.getPhoneNumber(), actualData.getObject().getPhoneNumber());
+        assertEquals(payload.getSsn(), actualData.getObject().getSsn());
+        assertEquals(payload.getSurname(), actualData.getObject().getSurname());
+        assertEquals(payload.getUsername(), actualData.getObject().getUsername());
+    }
+
+
+    @Given("Kayitli Dean username {string} icin userID numarasi alinir")
+    public void kayitli_dean_username_icin_user_id_numarasi_alinir(String username) {
+        spec.pathParams("first", "dean", "second", "getAll");
+        response = given(spec).when().get("{first}/{second}");
+        JsonPath json = response.jsonPath();
+        userId = json.getInt("find{it.username=='"+username+"'}.userId");
+        System.out.println("ID >>> " +userId);
+    }
+
 //    CLASS ENDS
 }
