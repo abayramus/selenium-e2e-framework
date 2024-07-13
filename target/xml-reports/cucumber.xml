@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="3.513" tests="1" skipped="0" failures="0" errors="0">
+<testcase classname="api_dean_creation" name="TC01_dean_get_api" time="3.395">
+<system-out><![CDATA[
+Given "admin" yetkisi ile giris yapilir.....................................passed
+And Dean icin "get" URL olusturulur.........................................passed
+When Dean icin "get" Request gonderilir ve Response alinir..................passed
+Then Status kodunun 200 oldugu dogrulanir...................................passed
+]]></system-out>
+</testcase>
+</testsuite>
