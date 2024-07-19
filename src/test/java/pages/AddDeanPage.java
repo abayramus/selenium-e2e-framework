@@ -149,11 +149,14 @@ public class AddDeanPage {
         String ilk3= String.valueOf(faker.number().numberBetween(100,1000));
         String ikinci3=String.valueOf(faker.number().numberBetween(100,1000));
         String son4=String.valueOf(faker.number().numberBetween(1000,10000));
-        enterPhone(ilk3+"-"+ikinci3+"-"+son4);
+//        enterPhone(ilk3+"-"+ikinci3+"-"+son4);
+        enterPhone(phone);
         waitFor(1);
-        enterSSN(faker.idNumber().ssnValid());
+//        enterSSN(faker.idNumber().ssnValid());
+        enterSSN(ssn);
         waitFor(1);
-        enterUsername(faker.name().username()+String.valueOf(faker.number().numberBetween(1,10)));
+//        enterUsername(faker.name().username()+String.valueOf(faker.number().numberBetween(1,10)));
+        enterUsername(username);
         waitFor(1);
         enterDeanPassword(password);
         waitFor(1);
